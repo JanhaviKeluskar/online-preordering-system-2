@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>HomePage</title>
+    <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,700&amp;display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic&amp;display=swap">
+    <link rel="stylesheet" href="/assets/fonts/fontawesome-all.min.css">
+    <link rel="stylesheet" href="/assets/css/animate.min.css">
+    <link rel="stylesheet" href="/assets/css/Features-Image-images.css">
+    <link rel="stylesheet" href="/assets/css/Login-Form-Basic-icons.css">
+</head>
+
+<body style="background: rgb(241,247,252);">
+    <div class="modal fade" role="dialog" tabindex="-1" id="modalAddNewItem" style="text-align: right;">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header" style="background: var(--bs-gray-400);">
+                    <h2 class="modal-title" style="text-align: center;width: 100%;">Add food</h2><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" style="background: var(--bs-gray-200);">
+                    <form method="post">
+                        <div class="text-center mb-3"><input class="form-control" type="text" id="amount" placeholder="Enter food title here" name="name" inputmode="numeric"><textarea class="form-control" name="description" placeholder="Enter food description here"></textarea><input class="form-control" type="text" id="pending" placeholder="Enter food price here" inputmode="numeric" style="padding: 5px 12px;" name="price"><input class="form-control" type="text" id="pending-5" placeholder="Food Discount in (%)" inputmode="numeric" style="padding: 5px 12px;" name="discount">
+                            <div class="dropdown"><button class="btn dropdown-toggle text-start" aria-expanded="false" data-bs-toggle="dropdown" type="button" style="width: 466px;color: var(--bs-gray-600);background: var(--bs-modal-bg);">Select Category&nbsp;</button>
+                                <div class="dropdown-menu"><a class="dropdown-item" href="#">First Item</a><a class="dropdown-item" href="#">Second Item</a><a class="dropdown-item" href="#">Third Item</a></div>
+                            </div><label class="form-label text-start" style="width: 466px;">Select food pic</label><input class="form-control" type="file">
+                        </div>
+                        <div class="mb-3"><button class="btn btn-light" type="button" data-bs-dismiss="modal" style="margin-right: 10px;">Close</button><button class="btn btn-primary" type="submit">Save</button></div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" role="dialog" tabindex="-1" id="modalContactDetails">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header" style="background: var(--bs-gray-200);">
+                    <h4 class="modal-title" style="width: 100%;text-align: center;">Food Details</h4><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" style="background: var(--bs-modal-bg);">
+                    <div class="container py-4 py-xl-5">
+                        <div class="row gy-4 row-cols-1 row-cols-md-2 row-cols-xl-3">
+                            <div class="col-10 col-lg-12 col-xl-12 text-center">
+                                <div class="card">
+                                    <div class="card-body p-4"><img width="100" height="80">
+                                        <h4 class="card-title">Food name</h4>
+                                        <h5 class="card-title">food price</h5>
+                                        <p class="card-text">&nbsp;food description</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <section class="login-clean" style="padding-top: 20px;padding-bottom: 10px;">
+        <div class="card" style="width: 95%;box-shadow: 3px 3px 7px var(--bs-gray-500);margin-right: auto;margin-left: auto;padding: 15px;">
+            <div class="card-body" style="padding: 0px;">
+                <div class="input-group" style="margin-bottom: 10px;"><button class="btn btn-success flash animated" id="btnNew" type="button" data-bs-target="#modalAddNewItem" data-bs-toggle="modal"><i class="fas fa-plus"></i>&nbsp;New</button><input class="form-control" type="search" placeholder="Search By Keyword" style="min-width: 100px;" autofocus=""><span class="flex-sm-wrap input-group-text">Max Records to Show</span><input class="form-control" type="number" value="10" name="maxRow" style="text-align: right;max-width: 100px;"></div>
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr style="background: var(--bs-blue);color: var(--bs-table-border-color);">
+                                <th style="text-align: center;">ID</th>
+                                <th style="text-align: center;">Food Name</th>
+                                <th style="text-align: center;">Food Image</th>
+                                <th style="text-align: center;">Food Description</th>
+                                <th style="text-align: center;">Food Category</th>
+                                <th style="text-align: center;">Food Price</th>
+                                <th style="text-align: center;">Food Discount</th>
+                                <th style="text-align: center;">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="text-align: right;">Cell 1</td>
+                                <td><button class="btn btn-primary" data-bs-toggle="modal" data-bss-tooltip="" data-bs-placement="bottom" data-bss-hover-animate="pulse" type="button" title="Saler Details" data-bs-target="#modalContactDetails"><i class="fas fa-user"></i></button>&nbsp;Salesman Name</td>
+                                <td style="text-align: right;"></td>
+                                <td style="text-align: right;"></td>
+                                <td style="text-align: right;"></td>
+                                <td style="text-align: right;"></td>
+                                <td style="text-align: right;"></td>
+                                <td class="text-center">
+                                    <div class="btn-group" role="group"><a class="btn btn-danger" role="button" data-bs-toggle="tooltip" data-bss-tooltip="" data-bs-placement="bottom" data-bss-hover-animate="pulse" title="Delete"><i class="fas fa-trash"></i></a><a class="btn btn-primary" role="button" data-bs-toggle="tooltip" data-bss-tooltip="" data-bs-placement="bottom" data-bss-hover-animate="pulse" title="Delete"><i class="fas fa-edit"></i></a></div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <nav>
+                    <ul class="pagination justify-content-center">
+                        <li class="page-item"><a class="page-link" aria-label="Previous" href="#"><span aria-hidden="true">«</span></a></li>
+                        <li class="page-item"><a class="page-link" href="#">1</a></li>
+                        <li class="page-item"><a class="page-link" aria-label="Next" href="#"><span aria-hidden="true">»</span></a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </section>
+    <script src="/assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/assets/js/bs-init.js"></script>
+    <script src="/assets/js/freelancer.js"></script>
+</body>
+
+</html>

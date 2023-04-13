@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>HomePage</title>
+    <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,700&amp;display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic&amp;display=swap">
+    <link rel="stylesheet" href="/assets/fonts/fontawesome-all.min.css">
+    <link rel="stylesheet" href="/assets/css/animate.min.css">
+    <link rel="stylesheet" href="/assets/css/Features-Image-images.css">
+    <link rel="stylesheet" href="/assets/css/Login-Form-Basic-icons.css">
+</head>
+
+<body style="background: rgb(241,247,252);">
+    <div class="modal fade" role="dialog" tabindex="-1" id="modalAddNewItem" style="text-align: right;">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header" style="background: var(--bs-gray-400);">
+                    <h2 class="modal-title" style="text-align: center;width: 100%;">Add Category</h2><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" style="background: var(--bs-gray-200);">
+                    <form method="post">
+                        <div class="text-center mb-3"><input class="form-control" type="text" id="amount" placeholder="Enter Category Name" name="name" inputmode="numeric"></div>
+                        <div class="text-center mb-3"><textarea class="form-control" placeholder="Enter Category Description" name="description"></textarea></div>
+                        <div class="mb-3"></div>
+                        <div class="mb-3"></div>
+                        <div class="mb-3"><button class="btn btn-light" type="button" data-bs-dismiss="modal" style="margin-right: 10px;">Close</button><button class="btn btn-primary" type="submit">Save</button></div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" role="dialog" tabindex="-1" id="modalContactDetails">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header" style="background: var(--bs-gray-200);">
+                    <h4 class="modal-title" style="width: 100%;text-align: center;">Hotel Details</h4><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" style="background: var(--bs-modal-bg);">
+                    <hgroup>
+                        <h5>Hotel Name</h5>
+                        <h6><button class="btn btn-primary" type="button"><i class="fas fa-phone-alt"></i></button>&nbsp;Contact Number</h6>
+                        <h6><button class="btn btn-primary" type="button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="1em" height="1em" fill="currentColor">
+                                    <!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. -->
+                                    <path d="M511.1 63.1v287.1c0 35.25-28.75 63.1-64 63.1h-144l-124.9 93.68c-7.875 5.75-19.12 .0497-19.12-9.7v-83.98h-96c-35.25 0-64-28.75-64-63.1V63.1c0-35.25 28.75-63.1 64-63.1h384C483.2 0 511.1 28.75 511.1 63.1z"></path>
+                                </svg></button>&nbsp;Email</h6>
+                        <h6><button class="btn btn-primary" type="button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="-64 0 512 512" width="1em" height="1em" fill="currentColor">
+                                    <!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. -->
+                                    <path d="M168.3 499.2C116.1 435 0 279.4 0 192C0 85.96 85.96 0 192 0C298 0 384 85.96 384 192C384 279.4 267 435 215.7 499.2C203.4 514.5 180.6 514.5 168.3 499.2H168.3zM192 256C227.3 256 256 227.3 256 192C256 156.7 227.3 128 192 128C156.7 128 128 156.7 128 192C128 227.3 156.7 256 192 256z"></path>
+                                </svg></button>&nbsp;Address</h6>
+                    </hgroup>
+                </div>
+            </div>
+        </div>
+    </div>
+    <section class="login-clean" style="padding-top: 20px;padding-bottom: 10px;">
+        <div class="card" style="width: 95%;box-shadow: 3px 3px 7px var(--bs-gray-500);margin-right: auto;margin-left: auto;padding: 15px;">
+            <div class="card-body" style="padding: 0px;">
+                <div class="input-group" style="margin-bottom: 10px;"><button class="btn btn-success flash animated" id="btnNew" type="button" data-bs-target="#modalAddNewItem" data-bs-toggle="modal"><i class="fas fa-plus"></i>&nbsp;New</button><input class="form-control" type="search" placeholder="Search By Keyword" style="min-width: 100px;" autofocus=""><span class="flex-sm-wrap input-group-text">Max Records to Show</span><input class="form-control" type="number" value="10" name="maxRow" style="text-align: right;max-width: 100px;"></div>
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr style="background: var(--bs-blue);color: var(--bs-table-border-color);">
+                                <th style="text-align: center;">ID</th>
+                                <th style="text-align: center;">Category Name</th>
+                                <th style="text-align: center;">Category Description</th>
+                                <th style="text-align: center;">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="text-align: right;">Cell 1</td>
+                                <td>&nbsp;Category1</td>
+                                <td style="text-align: right;"></td>
+                                <td class="text-center">
+                                    <div class="btn-group" role="group"><a class="btn btn-danger" role="button" data-bs-toggle="tooltip" data-bss-tooltip="" data-bs-placement="bottom" data-bss-hover-animate="pulse" title="Delete"><i class="fas fa-trash"></i></a><a class="btn btn-primary" role="button" data-bs-toggle="tooltip" data-bss-tooltip="" data-bs-placement="bottom" data-bss-hover-animate="pulse" title="Delete"><i class="fas fa-edit"></i></a></div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <nav>
+                    <ul class="pagination justify-content-center">
+                        <li class="page-item"><a class="page-link" aria-label="Previous" href="#"><span aria-hidden="true">«</span></a></li>
+                        <li class="page-item"><a class="page-link" href="#">1</a></li>
+                        <li class="page-item"><a class="page-link" aria-label="Next" href="#"><span aria-hidden="true">»</span></a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </section>
+    <script src="/assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/assets/js/bs-init.js"></script>
+    <script src="/assets/js/freelancer.js"></script>
+</body>
+
+</html>
