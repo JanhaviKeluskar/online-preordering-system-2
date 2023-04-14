@@ -10,23 +10,23 @@ public class Category
 {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)        
-    long idCategory;
+    long id;
     String name;
 
     public Category() {
     }
 
-    public Category(long idCategory, String name) {
-        this.idCategory = idCategory;
+    public Category(long id, String name) {
+        this.id = id;
         this.name = name;
     }
 
-    public long getIdCategory() {
-        return idCategory;
+    public long getid() {
+        return id;
     }
 
-    public void setIdCategory(long idCategory) {
-        this.idCategory = idCategory;
+    public void setid(long id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -40,7 +40,7 @@ public class Category
     @Override
     public String toString() {
         return "Category{" +
-                "idCategory=" + idCategory +
+                "id=" + id +
                 ", name='" + name + '\'' +
                 '}';
     }

@@ -7,7 +7,7 @@ import jakarta.persistence.Id;
 public class Customer
 {
     @Id
-    long idCustomer;
+    long id;
     String name;
     String contact;
     String email;
@@ -23,12 +23,12 @@ public class Customer
         this.password = password;
     }
 
-    public long getIdCustomer() {
-        return idCustomer;
+    public long getid() {
+        return id;
     }
 
-    public void setIdCustomer(long idCustomer) {
-        this.idCustomer = idCustomer;
+    public void setid(long id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -66,7 +66,7 @@ public class Customer
     @Override
     public String toString() {
         return "Customer{" +
-                "idCustomer=" + idCustomer +
+                "id=" + id +
                 ", name='" + name + '\'' +
                 ", contact='" + contact + '\'' +
                 ", email='" + email + '\'' +

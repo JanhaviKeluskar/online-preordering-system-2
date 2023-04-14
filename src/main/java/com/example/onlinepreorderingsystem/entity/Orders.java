@@ -11,7 +11,7 @@ public class Orders
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    long idOrder;
+    long id;
     long idCost;
     long idHotel;
     String DateTime;
@@ -24,8 +24,8 @@ public class Orders
 
     }
 
-    public Orders(long idOrder, long idCost, long idHotel, String dateTime, String visitingDateTime, Double paid, Boolean cancle) {
-        this.idOrder = idOrder;
+    public Orders(long id, long idCost, long idHotel, String dateTime, String visitingDateTime, Double paid, Boolean cancle) {
+        this.id = id;
         this.idCost = idCost;
         this.idHotel = idHotel;
         DateTime = dateTime;
@@ -34,12 +34,12 @@ public class Orders
         this.cancle = cancle;
     }
 
-    public long getIdOrder() {
-        return idOrder;
+    public long getid() {
+        return id;
     }
 
-    public void setIdOrder(long idOrder) {
-        this.idOrder = idOrder;
+    public void setid(long id) {
+        this.id = id;
     }
 
     public long getIdCost() {
@@ -93,7 +93,7 @@ public class Orders
     @Override
     public String toString() {
         return "Orders{" +
-                "idOrder=" + idOrder +
+                "id=" + id +
                 ", idCost=" + idCost +
                 ", idHotel=" + idHotel +
                 ", DateTime='" + DateTime + '\'' +

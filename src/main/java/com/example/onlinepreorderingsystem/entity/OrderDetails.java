@@ -10,7 +10,7 @@ public class OrderDetails
 {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    long idOrderDetails;
+    long id;
     long idOrder;
     long idProductDetails;
     String quantity;
@@ -19,20 +19,20 @@ public class OrderDetails
     public OrderDetails() {
     }
 
-    public OrderDetails(long idOrderDetails, long idOrder, long idProductDetails, String quantity, Boolean available) {
-        this.idOrderDetails = idOrderDetails;
+    public OrderDetails(long id, long idOrder, long idProductDetails, String quantity, Boolean available) {
+        this.id = id;
         this.idOrder = idOrder;
         this.idProductDetails = idProductDetails;
         this.quantity = quantity;
         this.available = available;
     }
 
-    public long getIdOrderDetails() {
-        return idOrderDetails;
+    public long getid() {
+        return id;
     }
 
-    public void setIdOrderDetails(long idOrderDetails) {
-        this.idOrderDetails = idOrderDetails;
+    public void setid(long id) {
+        this.id = id;
     }
 
     public long getIdOrder() {
@@ -70,7 +70,7 @@ public class OrderDetails
     @Override
     public String toString() {
         return "OrderDetails{" +
-                "idOrderDetails=" + idOrderDetails +
+                "id=" + id +
                 ", idOrder=" + idOrder +
                 ", idProductDetails=" + idProductDetails +
                 ", quantity='" + quantity + '\'' +

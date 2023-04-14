@@ -10,6 +10,7 @@ public class Feedback
 {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    long Id;
     long Cost;
     long Hotel;
     String Feedback;
@@ -23,6 +24,14 @@ public class Feedback
         Hotel = hotel;
         Feedback = feedback;
         Rating = rating;
+    }
+
+    public long getId() {
+        return Id;
+    }
+
+    public void setId(long id) {
+        Id = id;
     }
 
     public long getCost() {
