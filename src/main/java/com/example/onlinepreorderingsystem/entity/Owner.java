@@ -1,5 +1,6 @@
 package com.example.onlinepreorderingsystem.entity;
 
+
 import jakarta.persistence.*;
 
 @Entity

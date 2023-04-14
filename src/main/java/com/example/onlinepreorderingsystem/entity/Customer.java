@@ -1,14 +1,13 @@
 package com.example.onlinepreorderingsystem.entity;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 
 @Entity
 public class Customer
 {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "seq_customer")
-    @SequenceGenerator(name="seq_customer")
-    long id;
+    long idCustomer;
     String name;
     String contact;
     String email;
@@ -25,11 +24,11 @@ public class Customer
     }
 
     public long getIdCustomer() {
-        return id;
+        return idCustomer;
     }
 
-    public void setIdCustomer(long id) {
-        this.id = id;
+    public void setIdCustomer(long idCustomer) {
+        this.idCustomer = idCustomer;
     }
 
     public String getName() {
@@ -67,7 +66,7 @@ public class Customer
     @Override
     public String toString() {
         return "Customer{" +
-                "id=" + id +
+                "idCustomer=" + idCustomer +
                 ", name='" + name + '\'' +
                 ", contact='" + contact + '\'' +
                 ", email='" + email + '\'' +

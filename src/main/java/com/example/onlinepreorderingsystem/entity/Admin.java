@@ -3,7 +3,8 @@ package com.example.onlinepreorderingsystem.entity;
 import jakarta.persistence.*;
 
 @Entity
-public class Admin {
+public class Admin
+{
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "seq_admin")
     @SequenceGenerator(name="seq_admin")
@@ -76,6 +77,4 @@ public class Admin {
                 ", password='" + password + '\'' +
                 '}';
     }
-
-
 }
