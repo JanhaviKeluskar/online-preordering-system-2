@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="utf-8">
@@ -12,6 +12,17 @@
     <link rel="stylesheet" href="/assets/css/animate.min.css">
     <link rel="stylesheet" href="/assets/css/Features-Image-images.css">
     <link rel="stylesheet" href="/assets/css/Login-Form-Basic-icons.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <script>
+        function showData(id, name, description)
+        {
+            $('#id').val(id);
+            $('#name').val(name);
+            $('#description').val(description);
+
+        }
+    </script>
 </head>
 
 <body style="background: rgb(241,247,252);">
@@ -22,12 +33,17 @@
                     <h2 class="modal-title" style="text-align: center;width: 100%;">Add Category</h2><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body" style="background: var(--bs-gray-200);">
-                    <form method="post">
-                        <div class="text-center mb-3"><input class="form-control" type="text" id="amount" placeholder="Enter Category Name" name="name" inputmode="numeric"></div>
-                        <div class="text-center mb-3"><textarea class="form-control" placeholder="Enter Category Description" name="description"></textarea></div>
+                    <form method="post" action="/category/add/">
+                        <div class="text-center mb-3">
+                            <input type="hidden" id="id" name="id">
+                            <input id="name" class="form-control" type="text"  placeholder="Enter Category Name" name="name" inputmode="numeric" th:value="${category?.name}" required="">
+                            <textarea id="description" class="form-control" placeholder="Enter Category Description" name="description" th:value="${category?.description}" required=""></textarea></div>
                         <div class="mb-3"></div>
                         <div class="mb-3"></div>
-                        <div class="mb-3"><button class="btn btn-light" type="button" data-bs-dismiss="modal" style="margin-right: 10px;">Close</button><button class="btn btn-primary" type="submit">Save</button></div>
+                        <div class="mb-3">
+                            <button class="btn btn-light" type="button" data-bs-dismiss="modal" style="margin-right: 10px;">Close</button>
+                            <button class="btn btn-primary" type="submit">Save</button>
+                        </div>
                     </form>
                 </div>
             </div>
@@ -71,12 +87,15 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td style="text-align: right;">Cell 1</td>
-                                <td>&nbsp;Category1</td>
-                                <td style="text-align: right;"></td>
+                            <tr th:each="category:${list}">
+                                <td  th:text="${category.id}"style="text-align: right;"></td>
+                                <td  th:text="${category.name}"></td>
+                                <td  th:text="${category.description}" style="text-align: right;"></td>
                                 <td class="text-center">
-                                    <div class="btn-group" role="group"><a class="btn btn-danger" role="button" data-bs-toggle="tooltip" data-bss-tooltip="" data-bs-placement="bottom" data-bss-hover-animate="pulse" title="Delete"><i class="fas fa-trash"></i></a><a class="btn btn-primary" role="button" data-bs-toggle="tooltip" data-bss-tooltip="" data-bs-placement="bottom" data-bss-hover-animate="pulse" title="Delete"><i class="fas fa-edit"></i></a></div>
+                                    <div class="btn-group" role="group">
+                                        <a th:href="@{/category/delete/{id}/(id = ${category.id})}" class="btn btn-danger" role="button " data-bs-toggle="tooltip" data-bss-tooltip="" data-bs-placement="bottom" data-bss-hover-animate="pulse" title="Delete"><i class="fas fa-trash"></i></a>
+                                        <button class="btn btn-success" id="btnEdit" type="button" data-bs-target="#modalAddNewItem" data-bs-toggle="modal" th:onClick="showData([[${category.id}]], [[${category.name}]], [[${category.description}]])"><i class="fas fa-edit" ></i>&nbsp;</button>
+                                    </div>
                                 </td>
                             </tr>
                         </tbody>

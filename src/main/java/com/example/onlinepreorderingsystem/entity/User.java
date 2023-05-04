@@ -1,35 +1,42 @@
 package com.example.onlinepreorderingsystem.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
-public class Customer
+public class User
 {
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "seq_admin")
+    @SequenceGenerator(name="seq_admin")
     long id;
     String name;
     String contact;
+    @Column(unique = true)
     String email;
     String password;
+    Boolean isAdmin;
 
-    public Customer() {
+    public User() {
+
     }
 
-    public Customer(String name, String contact, String email, String password) {
+    public User( String name, String contact, String email, String password) {
         this.name = name;
         this.contact = contact;
         this.email = email;
         this.password = password;
+        this.isAdmin = false;
     }
 
-    public long getid() {
+    public long getId() {
         return id;
     }
 
-    public void setid(long id) {
+    public void setId(long id) {
         this.id = id;
     }
+
+
 
     public String getName() {
         return name;
@@ -63,14 +70,23 @@ public class Customer
         this.password = password;
     }
 
+    public Boolean getAdmin() {
+        return isAdmin;
+    }
+
+    public void setAdmin(Boolean admin) {
+        isAdmin = admin;
+    }
+
     @Override
     public String toString() {
-        return "Customer{" +
+        return "User{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", contact='" + contact + '\'' +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
+                ", isAdmin=" + isAdmin +
                 '}';
     }
 }

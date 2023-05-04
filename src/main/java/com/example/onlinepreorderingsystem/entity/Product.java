@@ -11,22 +11,27 @@ public class Product
     long id;
     long idCategory;
     String name;
+    String description;
+    double price;
+    double discount;
+    String img;
 
-    public Product() {
+    public Product(){}
 
-    }
-
-    public Product(long id, long idCategory, String name) {
-        this.id = id;
+    public Product(long idCategory, String name, String description, double price, double discount, String img) {
         this.idCategory = idCategory;
         this.name = name;
+        this.description = description;
+        this.price = price;
+        this.discount = discount;
+        this.img = img;
     }
 
-    public long getIdProduct() {
+    public long getId() {
         return id;
     }
 
-    public void setIdProduct(long id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -46,12 +51,35 @@ public class Product
         this.name = name;
     }
 
-    @Override
-    public String toString() {
-        return "Product{" +
-                "id=" + id +
-                ", idCategory=" + idCategory +
-                ", name='" + name + '\'' +
-                '}';
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    public double getDiscount() {
+        return discount;
+    }
+
+    public void setDiscount(double discount) {
+        this.discount = discount;
+    }
+
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
     }
 }

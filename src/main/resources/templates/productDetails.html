@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="utf-8">
@@ -12,6 +12,20 @@
     <link rel="stylesheet" href="/assets/css/animate.min.css">
     <link rel="stylesheet" href="/assets/css/Features-Image-images.css">
     <link rel="stylesheet" href="/assets/css/Login-Form-Basic-icons.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <script>
+        function showData(id, idCategory, name, description, price, discount, img)
+        {
+            $('#id').val(id);
+            $('#idCategory').val(idCategory);
+            $('#name').val(name);
+            $('#description').val(description);
+            $('#price').val(price);
+            $('#discount').val(discount);
+            $('#img').val(img);
+        }
+    </script>
 </head>
 
 <body style="background: rgb(241,247,252);">
@@ -22,13 +36,22 @@
                     <h2 class="modal-title" style="text-align: center;width: 100%;">Add food</h2><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body" style="background: var(--bs-gray-200);">
-                    <form method="post">
-                        <div class="text-center mb-3"><input class="form-control" type="text" id="amount" placeholder="Enter food title here" name="name" inputmode="numeric"><textarea class="form-control" name="description" placeholder="Enter food description here"></textarea><input class="form-control" type="text" id="pending" placeholder="Enter food price here" inputmode="numeric" style="padding: 5px 12px;" name="price"><input class="form-control" type="text" id="pending-5" placeholder="Food Discount in (%)" inputmode="numeric" style="padding: 5px 12px;" name="discount">
-                            <div class="dropdown"><button class="btn dropdown-toggle text-start" aria-expanded="false" data-bs-toggle="dropdown" type="button" style="width: 466px;color: var(--bs-gray-600);background: var(--bs-modal-bg);">Select Category&nbsp;</button>
-                                <div class="dropdown-menu"><a class="dropdown-item" href="#">First Item</a><a class="dropdown-item" href="#">Second Item</a><a class="dropdown-item" href="#">Third Item</a></div>
-                            </div><label class="form-label text-start" style="width: 466px;">Select food pic</label><input class="form-control" type="file">
+                    <form method="post" action="/product/add/" enctype="multipart/form-data">
+                        <div class="text-center mb-3">
+                            <input type="hidden" id="id" name="id">
+                            <input id="name"  class="form-control" type="text" placeholder="Enter food title here" name="name" inputmode="numeric" th:value="${product?.name}" required="">
+                            <textarea id="description" class="form-control" name="description" placeholder="Enter food description here"></textarea>
+                            <input id="price" class="form-control" type="text" placeholder="Enter food price here" inputmode="numeric" style="padding: 5px 12px;" name="price">
+                            <input id="discount" class="form-control" type="text" placeholder="Food Discount in (%)" inputmode="numeric" style="padding: 5px 12px;" name="discount">
+                            <select id="idCategory" class="form-select" name="idCategory">
+                                <option th:each="cat : ${listCategory}" th:value="${cat.id}" th:text="${cat.name}"></option>
+                            </select>
+
+                            <label class="form-label text-start" style="width: 466px;">Select food pic</label>
+                            <input id="img" class="form-control" type="file" name="file" accept="image/png, image/jpeg" required>
                         </div>
-                        <div class="mb-3"><button class="btn btn-light" type="button" data-bs-dismiss="modal" style="margin-right: 10px;">Close</button><button class="btn btn-primary" type="submit">Save</button></div>
+                        <div class="mb-3"><button class="btn btn-light" type="button" data-bs-dismiss="modal" style="margin-right: 10px;">Close</button>
+                            <button class="btn btn-primary" type="submit">Save</button></div>
                     </form>
                 </div>
             </div>
@@ -66,7 +89,6 @@
                     <table class="table">
                         <thead>
                             <tr style="background: var(--bs-blue);color: var(--bs-table-border-color);">
-                                <th style="text-align: center;">ID</th>
                                 <th style="text-align: center;">Food Name</th>
                                 <th style="text-align: center;">Food Image</th>
                                 <th style="text-align: center;">Food Description</th>
@@ -77,16 +99,23 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td style="text-align: right;">Cell 1</td>
-                                <td><button class="btn btn-primary" data-bs-toggle="modal" data-bss-tooltip="" data-bs-placement="bottom" data-bss-hover-animate="pulse" type="button" title="Saler Details" data-bs-target="#modalContactDetails"><i class="fas fa-user"></i></button>&nbsp;Salesman Name</td>
-                                <td style="text-align: right;"></td>
-                                <td style="text-align: right;"></td>
-                                <td style="text-align: right;"></td>
-                                <td style="text-align: right;"></td>
-                                <td style="text-align: right;"></td>
+                            <tr th:each="product:${listProduct}" >
+                                <td style="text-align: right;" th:text="${product.name}">Cell 1</td>
+                                <td style="text-align: right;"> <img height="100px" width="100px" th:src="@{/assets/img/{imgName}/(imgName=${product.img})}"> </td>
+                                <td style="text-align: right;" th:text="${product.description}">Cell 1</td>
+                                <td style="text-align: right;" th:text="${catDao.getNameById(product.idCategory)}">Cell 1</td>
+                                <td style="text-align: right;" th:text="${product.price}">Cell 1</td>
+                                <td style="text-align: right;" th:text="${product.discount}">Cell 1</td>
+
                                 <td class="text-center">
-                                    <div class="btn-group" role="group"><a class="btn btn-danger" role="button" data-bs-toggle="tooltip" data-bss-tooltip="" data-bs-placement="bottom" data-bss-hover-animate="pulse" title="Delete"><i class="fas fa-trash"></i></a><a class="btn btn-primary" role="button" data-bs-toggle="tooltip" data-bss-tooltip="" data-bs-placement="bottom" data-bss-hover-animate="pulse" title="Delete"><i class="fas fa-edit"></i></a></div>
+                                    <div class="btn-group" role="group">
+                                        <a class="btn btn-danger" role="button" data-bs-toggle="tooltip" data-bss-tooltip="" data-bs-placement="bottom" data-bss-hover-animate="pulse" title="Delete" th:href="@{/product/delete/{id}/(id=${product.id})}">
+                                            <i class="fas fa-trash"></i>
+                                        </a>
+
+                                        <button class="btn btn-success" id="btnEdit" type="button" data-bs-target="#modalAddNewItem" data-bs-toggle="modal" th:onClick="showData([[${product.id}]], [[${product.name}]], [[${product.description}]], [[${product.price}]], [[${product.discount}]], [[${product.idCategory}]])"><i class="fas fa-edit" ></i>&nbsp;</button>
+
+                                    </div>
                                 </td>
                             </tr>
                         </tbody>

@@ -11,19 +11,15 @@ public class Feedback
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     long Id;
-    long Cost;
-    long Hotel;
-    String Feedback;
-    long Rating;
+    String name;
+    String msg;
 
     public Feedback() {
     }
 
-    public Feedback(long cost, long hotel, String feedback, long rating) {
-        Cost = cost;
-        Hotel = hotel;
-        Feedback = feedback;
-        Rating = rating;
+    public Feedback(String name, String msg) {
+        this.name = name;
+        this.msg = msg;
     }
 
     public long getId() {
@@ -34,45 +30,28 @@ public class Feedback
         Id = id;
     }
 
-    public long getCost() {
-        return Cost;
+    public String getName() {
+        return name;
     }
 
-    public void setCost(long cost) {
-        Cost = cost;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public long getHotel() {
-        return Hotel;
+    public String getMsg() {
+        return msg;
     }
 
-    public void setHotel(long hotel) {
-        Hotel = hotel;
-    }
-
-    public String getFeedback() {
-        return Feedback;
-    }
-
-    public void setFeedback(String feedback) {
-        Feedback = feedback;
-    }
-
-    public long getRating() {
-        return Rating;
-    }
-
-    public void setRating(long rating) {
-        Rating = rating;
+    public void setMsg(String msg) {
+        this.msg = msg;
     }
 
     @Override
     public String toString() {
         return "Feedback{" +
-                "Cost=" + Cost +
-                ", Hotel=" + Hotel +
-                ", Feedback='" + Feedback + '\'' +
-                ", Rating=" + Rating +
+                "Id=" + Id +
+                ", name='" + name + '\'' +
+                ", msg='" + msg + '\'' +
                 '}';
     }
 }

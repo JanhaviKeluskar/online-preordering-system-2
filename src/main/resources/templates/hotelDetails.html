@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="utf-8">
@@ -12,6 +12,23 @@
     <link rel="stylesheet" href="/assets/css/animate.min.css">
     <link rel="stylesheet" href="/assets/css/Features-Image-images.css">
     <link rel="stylesheet" href="/assets/css/Login-Form-Basic-icons.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+
+    <script>
+        function showData(id, name, address, city, district, email, contact, accNo, ifsc, upi)
+        {
+            $('#id').val(id);
+            $('#name').val(name);
+            $('#address').val(address);
+            $('#city').val(city);
+            $('#district').val(district);
+            $('#email').val(email);
+            $('#contact').val(contact);
+            $('#accNo').val(accNo);
+            $('#ifsc').val(ifsc);
+            $('#upi').val(upi);
+        }
+    </script>
 </head>
 
 <body style="background: rgb(241,247,252);">
@@ -22,11 +39,24 @@
                     <h2 class="modal-title" style="text-align: center;width: 100%;">Add Hotel</h2><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body" style="background: var(--bs-gray-200);">
-                    <form method="post">
-                        <div class="text-center mb-3"><input class="form-control" type="text" id="amount" placeholder="Name" name="name" inputmode="numeric"><input class="form-control" type="text" id="paid" required="" name="address" inputmode="numeric" autofocus="" placeholder="Address"><input class="form-control" type="text" id="pending" placeholder="City" inputmode="numeric" style="padding: 5px 12px;" name="city"><input class="form-control" type="text" id="pending-1" placeholder="District" inputmode="numeric" style="padding: 5px 12px;" name="district"><input class="form-control" type="text" id="pending-2" placeholder="Email" inputmode="email" style="padding: 5px 12px;" name="email"><input class="form-control" type="text" id="pending-3" placeholder="Contact" inputmode="numeric" style="padding: 5px 12px;" name="contact"><input class="form-control" type="text" id="pending-5" placeholder="AccountNo" inputmode="numeric" style="padding: 5px 12px;" name="accountNo"><input class="form-control" type="text" id="pending-4" inputmode="numeric" style="padding: 5px 12px;" name="ifsc" placeholder="IFSC Code"><input class="form-control" type="text" id="pending-6" inputmode="numeric" style="padding: 5px 12px;" name="upi" placeholder="UPI Id"></div>
+                    <form method="post" action="/hotel/add/">
+                        <div class="text-center mb-3">
+                            <input type="hidden" id="id" name="id">
+                            <input id="name" class="form-control" type="text"  placeholder="Name" name="name" th:value="${hotel?.name}" inputmode="numeric">
+                            <input id="address" class="form-control" type="text"  required="" name="address" th:value="${hotel?.address}" inputmode="numeric" autofocus="" placeholder="Address">
+                            <input id="city" class="form-control" type="text"  placeholder="City" inputmode="text" style="padding: 5px 12px;" name="city" th:value="${hotel?.city}">
+                            <input id="district" class="form-control" type="text"  placeholder="District" inputmode="numeric"style="padding: 5px 12px;" name="district" th:value="${hotel?.district}">
+                            <input id="email" class="form-control" type="text"  placeholder="Email" inputmode="numeric" style="padding: 5px 12px;" name="email" th:value="${hotel?.email}">
+                            <input id="contact" class="form-control" type="text"  placeholder="Contact" inputmode="numeric" style="padding: 5px 12px;" name="contact" th:value="${hotel?.contact}">
+                            <input id="accNo" class="form-control" type="text"  placeholder="AccountNo" inputmode="numeric" style="padding: 5px 12px;" name="accountNo" th:value="${hotel?.accountNo}">
+                            <input id="ifsc" class="form-control" type="text"  inputmode="numeric" style="padding: 5px 12px;" name="ifsc" placeholder="IFSC Code" th:value="${hotel?.ifsc}">
+                            <input id="upi" class="form-control" type="text"  inputmode="numeric" style="padding: 5px 12px;" name="upi" placeholder="UPI Id" th:value="${hotel?.upi}">
+                        </div>
                         <div class="mb-3"></div>
                         <div class="mb-3"></div>
-                        <div class="mb-3"><button class="btn btn-light" type="button" data-bs-dismiss="modal" style="margin-right: 10px;">Close</button><button class="btn btn-primary" type="submit">Save</button></div>
+                        <div class="mb-3"><button class="btn btn-light" type="button" data-bs-dismiss="modal" style="margin-right: 10px;">Close</button>
+                            <button class="btn btn-primary" type="submit">Save</button>
+                        </div>
                     </form>
                 </div>
             </div>
@@ -66,20 +96,24 @@
                                 <th style="text-align: center;">ID</th>
                                 <th style="text-align: center;">Hotel Name</th>
                                 <th style="text-align: center;">Hotel Address</th>
-                                <th style="text-align: center;">Conatct</th>
+                                <th style="text-align: center;">Contact</th>
                                 <th style="text-align: center;">Email</th>
                                 <th style="text-align: center;">Action</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td style="text-align: right;">Cell 1</td>
-                                <td><button class="btn btn-primary" data-bs-toggle="modal" data-bss-tooltip="" data-bs-placement="bottom" data-bss-hover-animate="pulse" type="button" title="Saler Details" data-bs-target="#modalContactDetails"><i class="fas fa-user"></i></button>&nbsp;Hotel Name</td>
-                                <td style="text-align: right;">10,000</td>
-                                <td style="text-align: right;">10,000</td>
-                                <td style="text-align: right;">8000</td>
+                            <tr th:each="hotel:${list}">
+                                <td  th:text="${hotel.id}"style="text-align: right;"></td>
+                                <td  th:text="${hotel.name}"></td>
+                                <td  th:text="${hotel.address}" style="text-align: right;"></td>
+                                <td  th:text="${hotel.contact}" style="text-align: right;"></td>
+                                <td  th:text="${hotel.email}" style="text-align: right;"></td>
                                 <td class="text-center">
-                                    <div class="btn-group" role="group"><a class="btn btn-danger" role="button" data-bs-toggle="tooltip" data-bss-tooltip="" data-bs-placement="bottom" data-bss-hover-animate="pulse" title="Delete"><i class="fas fa-trash"></i></a></div>
+                                    <div class="btn-group" role="group">
+                                        <a th:href="@{/hotel/delete/{id}/(id = ${hotel.id})}" class="btn btn-danger" role="button " data-bs-toggle="tooltip" data-bss-tooltip="" data-bs-placement="bottom" data-bss-hover-animate="pulse" title="Delete"><i class="fas fa-trash"></i></a>
+                                        <button class="btn btn-success" id="btnEdit" type="button" data-bs-target="#modalAddNewItem" data-bs-toggle="modal"><i class="fas fa-edit" th:onClick="showData([[${hotel.id}]], [[${hotel.name}]], [[${hotel.address}]], [[${hotel.city}]], [[${hotel.district}]], [[${hotel.email}]], [[${hotel.contact}]], [[${hotel.bankAccount}]], [[${hotel.ifsc}]], [[${hotel.upi}]])"></i>&nbsp;</button>
+                                    </div>
                                 </td>
                             </tr>
                         </tbody>

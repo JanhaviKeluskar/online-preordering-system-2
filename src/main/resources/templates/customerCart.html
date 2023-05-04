@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>HomePage</title>
+    <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,700&amp;display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic&amp;display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Akaya+Kanadaka&amp;display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Almendra&amp;display=swap">
+    <link rel="stylesheet" href="/assets/fonts/fontawesome-all.min.css">
+    <link rel="stylesheet" href="/assets/css/animate.min.css">
+    <link rel="stylesheet" href="/assets/css/Features-Image-images.css">
+    <link rel="stylesheet" href="/assets/css/Login-Form-Basic-icons.css">
+</head>
+
+<body style="background: rgb(241,247,252);">
+
+    <div th:replace="fragments.html :: topMenuBar"></div>
+
+    <section class="login-clean" style="padding-top: 20px;padding-bottom: 10px;margin-top:100px">
+        <div class="card" style="width: 95%;box-shadow: 3px 3px 7px var(--bs-gray-500);margin-right: auto;margin-left: auto;padding: 15px;">
+            <div class="card-body" style="padding: 0px;">
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr style="background: var(--bs-primary);color: var(--bs-table-border-color);">
+                                <th style="text-align: center;">Product Image</th>
+                                <th style="text-align: center;">Product name</th>
+                                <th style="text-align: center;">Qty</th>
+                                <th style="text-align: center;">Rate</th>
+                                <th style="text-align: center;">Amount</th>
+                                <th style="text-align: center;">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="od : ${listCart}">
+                                <td align="center"><img width="100px" height="100px" th:src="@{/assets/img/{imgName}/(imgName=${prodDao.getReferenceById(od.idProduct).img})}"></td>
+                                <td th:text="${prodDao.getReferenceById(od.idProduct).getName()}" style="text-align: left;">pizza</td>
+                                <td th:text="${od.qty}"style="text-align: right;">&nbsp;1</td>
+                                <td th:text="${prodDao.getReferenceById(od.idProduct).getPrice()}" style="text-align: right;color: var(--bs-table-color);">100</td>
+                                <td th:text="${prodDao.getReferenceById(od.idProduct).getPrice() * od.qty}" style="text-align: right;color: var(--bs-table-color);">100</td>
+                                <td class="text-center">
+                                    <div class="btn-group" role="group">
+                                        <a class="btn btn-danger" role="button" data-bs-toggle="tooltip" data-bss-tooltip="" data-bs-placement="bottom" data-bss-hover-animate="pulse" title="Delete" th:href="@{/orders/delete/{id}/(id=${od.id})}">
+                                            <i class="far fa-trash-alt"></i></a>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="d-lg-flex justify-content-lg-end">
+                    <div class="table-responsive text-end" style="width: 300px;text-align: right;">
+                        <table class="table table-borderless">
+                            <tbody>
+                                <tr>
+                                    <td><strong>Subtotal</strong></td>
+                                    <td><strong th:text="${subTotal}">100</strong></td>
+                                </tr>
+                                <tr>
+                                    <td>Tax</td>
+                                    <td th:text="${tax + '%'}">18%</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Grand Total</strong></td>
+                                    <td><strong th:text="${grandTotal}"></strong></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div th:if="${idOrder==-1}" class="d-lg-flex justify-content-lg-center">
+
+                    <form method="post" action="/orders/add/">
+                        <label class="form-label" style="margin-top: 20px;margin-right: 10px;color: var(--bs-link-hover-color);">
+                            <strong>Visting Date Time</strong></label>
+
+                        <input type="hidden" name="idCustomer" th:value="${customer.id}">
+                        <input type="datetime-local" style="margin: 5px;" name="visitingDateTime" required>
+                        <input type="number" placeholder="Paid Amount" style="margin: 5px;" name="paid" required>
+                        <button class="btn btn-primary" type="submit" style="text-align: center;margin: 5px;">Book Your Order</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script src="/assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/assets/js/bs-init.js"></script>
+    <script src="/assets/js/freelancer.js"></script>
+</body>
+
+</html>

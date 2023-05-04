@@ -12,20 +12,21 @@ public class Category
     @GeneratedValue(strategy = GenerationType.AUTO)        
     long id;
     String name;
+    String description;
 
     public Category() {
     }
 
-    public Category(long id, String name) {
-        this.id = id;
+    public Category(String name, String description) {
         this.name = name;
+        this.description = description;
     }
 
-    public long getid() {
+    public long getId() {
         return id;
     }
 
-    public void setid(long id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -37,11 +38,20 @@ public class Category
         this.name = name;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
     @Override
     public String toString() {
         return "Category{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
                 '}';
     }
 }

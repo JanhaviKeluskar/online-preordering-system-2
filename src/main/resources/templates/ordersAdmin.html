@@ -1,0 +1,111 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>HomePage</title>
+    <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,700&amp;display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic&amp;display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Akaya+Kanadaka&amp;display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Almendra&amp;display=swap">
+    <link rel="stylesheet" href="/assets/fonts/fontawesome-all.min.css">
+    <link rel="stylesheet" href="/assets/css/animate.min.css">
+    <link rel="stylesheet" href="/assets/css/Bootstrap-4---Payment-Form.css">
+    <link rel="stylesheet" href="/assets/css/Features-Image-images.css">
+    <link rel="stylesheet" href="/assets/css/Login-Form-Basic-icons.css">
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="/assets/js/orderAdminHandler.js"></script>
+</head>
+
+<body style="background: rgb(241,247,252);">
+<div class="modal fade" role="dialog" tabindex="-1" id="modalContactDetails">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header" style="background: var(--bs-gray-200);">
+                <h4 class="modal-title" style="width: 100%;text-align: center;">Order Details</h4><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" style="background: var(--bs-modal-bg);">
+                <section class="py-4 py-xl-5">
+                    <div class="container">
+                        <div class="row d-flex justify-content-center">
+                            <div class="col-md-8 col-lg-6 col-xl-5 col-xxl-4" style="width: 500px;">
+                                <div class="card mb-5">
+                                    <div class="card-body p-sm-5">
+                                        <form method="post">
+                                            <div class="mb-3"><input class="form-control" type="text" id="name-2" name="name" placeholder="Product name"></div>
+                                            <div class="mb-3"><input class="form-control" type="text" id="name-3" name="price" placeholder="Rate"></div>
+                                            <div class="mb-3"><input class="form-control" type="text" id="name-1" name="qty" placeholder="Qty"></div>
+                                            <div class="mb-3"><input class="form-control" type="text" id="name-4" name="amount" placeholder="Amount"></div>
+                                            <div class="mb-3"></div>
+                                            <div></div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+</div>
+<section class="login-clean" style="padding-top: 20px;padding-bottom: 10px;">
+    <div class="card" style="width: 95%;box-shadow: 3px 3px 7px var(--bs-gray-500);margin-right: auto;margin-left: auto;padding: 15px;">
+        <div class="card-body" style="padding: 0px;">
+            <div class="input-group" style="margin-bottom: 10px;"><input class="form-control" type="search" id="search" placeholder="Search By Keyword" style="min-width: 100px;" autofocus=""><span class="input-group-text">Max Records to Show</span><input class="form-control" type="number" id="maxRows" value="10" name="maxRow" style="text-align: right;max-width: 100px;"></div>
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                    <tr style="background: var(--bs-blue);color: var(--bs-table-border-color);">
+                        <th style="text-align: center;">Order Id</th>
+                        <th style="text-align: center;">Customer Name</th>
+                        <th style="text-align: center;">Order Date</th>
+                        <th style="text-align: center;">Visiting Date</th>
+                        <th style="text-align: center;">Status</th>
+                        <th style="text-align: center;">Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="orders : ${listOrders}">
+                        <td th:text="${orders.id}" style="text-align: right;">Id</td>
+                        <td th:text="${userDao.getReferenceById(orders.idCustomer).getName()}" style="text-align: right;">Name</td>
+                        <td th:text="${#temporals.format(orders.date, 'dd-MM-yyyy')}" style="text-align: center;">Order Date</td>
+                        <td th:text="${#temporals.format(orders.visitingDateTime, 'dd-MM-yyyy HH:mm')}" style="text-align: center;">Visiting Date</td>
+                        <td class="text-center">
+                            <select id="selectStatus" th:onChange="setStatus([[${orders.id}]], this.value, event)" class="border rounded-pill float-start" name="Cancelled" value="2" style="height: 40px;padding-left: 10px;" th:class="|${orders.idStatus == 0 ? 'text-info border-info' : ''} ${orders.idStatus == 1 ? 'text-success border-success' : ''} ${orders.idStatus == 2 ? 'text-danger border-danger' : ''}|">
+                                <option th:class="text-info" value="0" th:selected = "${orders.idStatus==0}">Pending</option>
+                                <option th:class="text-success" value="1" th:selected = "${orders.idStatus==1}">Approved</option>
+                                <option th:class="text-danger" value="2" th:selected = "${orders.idStatus==2}">Cancled</option>
+                            </select>
+                        </td>
+                        <td class="text-center">
+                            <div class="btn-group" role="group">
+                                <a class="btn btn-warning" role="button" data-bs-toggle="modal" data-bss-tooltip="" data-bs-placement="bottom" data-bss-hover-animate="pulse" title="Invoice" data-bs-target="#modalContactDetails"><i class="fas fa-utensils"></i></a>
+                                <a class="btn btn-danger" role="button" data-bs-toggle="tooltip" data-bss-tooltip="" data-bs-placement="bottom" data-bss-hover-animate="pulse" title="Invoice"><i class="fas fa-trash"></i></a></div>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <nav>
+                <ul class="pagination justify-content-center">
+                    <li class="page-item"><a class="page-link" aria-label="Previous" href="#"><span aria-hidden="true">«</span></a></li>
+                    <li class="page-item"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item"><a class="page-link" aria-label="Next" href="#"><span aria-hidden="true">»</span></a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</section>
+<script src="/assets/bootstrap/js/bootstrap.min.js"></script>
+<script src="/assets/js/bs-init.js"></script>
+<script src="/assets/js/freelancer.js"></script>
+<script src="/assets/js/Bootstrap-4---Payment-Form-script.js"></script>
+</body>
+
+</html>

@@ -11,30 +11,29 @@ public class Hotel
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     long id;
-    String Name;
-    String City;
-    String NearPlace;
-    String District;
-    String Email;
-    String Contact;
-    String Location;
-    String BankAccount;
-    String QRCode;
+    String name;
+    String address;
+    String city;
+    String district;
+    String email;
+    String contact;
+    String bankAccount;
+    String ifsc;
+    String upi;
 
     public Hotel() {
     }
 
-    public Hotel(long id, String name, String city, String nearPlace, String district, String email, String contact, String location, String bankAccount, String QRCode) {
-        this.id = id;
-        Name = name;
-        City = city;
-        NearPlace = nearPlace;
-        District = district;
-        Email = email;
-        Contact = contact;
-        Location = location;
-        BankAccount = bankAccount;
-        this.QRCode = QRCode;
+    public Hotel(String name, String address, String city, String district, String email, String contact, String bankAccount, String ifsc, String upi) {
+        this.name = name;
+        this.address = address;
+        this.city = city;
+        this.district = district;
+        this.email = email;
+        this.contact = contact;
+        this.bankAccount = bankAccount;
+        this.ifsc = ifsc;
+        this.upi = upi;
     }
 
     public long getId() {
@@ -46,90 +45,91 @@ public class Hotel
     }
 
     public String getName() {
-        return Name;
+        return name;
     }
 
     public void setName(String name) {
-        Name = name;
+        this.name = name;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     public String getCity() {
-        return City;
+        return city;
     }
 
     public void setCity(String city) {
-        City = city;
-    }
-
-    public String getNearPlace() {
-        return NearPlace;
-    }
-
-    public void setNearPlace(String nearPlace) {
-        NearPlace = nearPlace;
+        this.city = city;
     }
 
     public String getDistrict() {
-        return District;
+        return district;
     }
 
     public void setDistrict(String district) {
-        District = district;
+        this.district = district;
     }
 
     public String getEmail() {
-        return Email;
+        return email;
     }
 
     public void setEmail(String email) {
-        Email = email;
+        this.email = email;
     }
 
     public String getContact() {
-        return Contact;
+        return contact;
     }
 
     public void setContact(String contact) {
-        Contact = contact;
-    }
-
-    public String getLocation() {
-        return Location;
-    }
-
-    public void setLocation(String location) {
-        Location = location;
+        this.contact = contact;
     }
 
     public String getBankAccount() {
-        return BankAccount;
+        return bankAccount;
     }
 
     public void setBankAccount(String bankAccount) {
-        BankAccount = bankAccount;
+        this.bankAccount = bankAccount;
     }
 
-    public String getQRCode() {
-        return QRCode;
+    public String getIfsc() {
+        return ifsc;
     }
 
-    public void setQRCode(String QRCode) {
-        this.QRCode = QRCode;
+    public void setIfsc(String ifsc) {
+        this.ifsc = ifsc;
+    }
+
+    public String getUpi() {
+        return upi;
+    }
+
+    public void setUpi(String upi) {
+        this.upi = upi;
     }
 
     @Override
     public String toString() {
         return "Hotel{" +
                 "id=" + id +
-                ", Name='" + Name + '\'' +
-                ", City='" + City + '\'' +
-                ", NearPlace='" + NearPlace + '\'' +
-                ", District='" + District + '\'' +
-                ", Email='" + Email + '\'' +
-                ", Contact='" + Contact + '\'' +
-                ", Location='" + Location + '\'' +
-                ", BankAccount='" + BankAccount + '\'' +
-                ", QRCode='" + QRCode + '\'' +
+                ", name='" + name + '\'' +
+                ", address='" + address + '\'' +
+                ", city='" + city + '\'' +
+                ", district='" + district + '\'' +
+                ", email='" + email + '\'' +
+                ", contact='" + contact + '\'' +
+                ", bankAccount='" + bankAccount + '\'' +
+                ", ifsc='" + ifsc + '\'' +
+                ", upi='" + upi + '\'' +
                 '}';
     }
 }
+

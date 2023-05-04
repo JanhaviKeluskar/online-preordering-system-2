@@ -5,19 +5,21 @@
   <title>Title</title>
 </head>
 <body>
-<div th:fragment="navBar">
-  <nav class="navbar navbar-light navbar-expand-lg fixed-top bg-secondary text-uppercase" id="mainNav">
-    <div class="container"><a class="navbar-brand" href="#page-top">Tasty Bites</a><button data-bs-toggle="collapse" data-bs-target="#navbarResponsive" class="navbar-toggler text-white bg-primary navbar-toggler-right text-uppercase rounded" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><i class="fa fa-bars"></i></button>
-      <div class="collapse navbar-collapse" id="navbarResponsive">
-        <ul class="navbar-nav ms-auto">
-          <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="/login/admin/" th:classappend="${#ctx.springRequestContext.requestUri=='/login/admin/'} ? 'active'">admin login</a></li>
-          <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="/login/owner/" th:classappend="${#strings.startsWith(#ctx.springRequestContext.requestUri, '/login/owner/')} ? 'active'">owner login</a></li>
-          <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="/login/customer/" th:classappend="${#strings.startsWith(#ctx.springRequestContext.requestUri, '/login/customer/')} ? 'active'">customer login</a></li>
-        </ul>
-      </div>
+
+<nav th:fragment="topMenuBar" class="navbar navbar-light navbar-expand-lg fixed-top bg-secondary text-uppercase" id="mainNav">
+  <div class="container"><a class="navbar-brand" href="#page-top">Tasty Bites</a><button data-bs-toggle="collapse" data-bs-target="#navbarResponsive" class="navbar-toggler text-white bg-primary navbar-toggler-right text-uppercase rounded" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><i class="fa fa-bars"></i></button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="/public/home/" th:classappend="${#strings.startsWith(#ctx.springRequestContext.requestUri, '/public/home/')} ? 'active'">Home</a></li>
+        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="/customer/menu/" th:classappend="${#strings.startsWith(#ctx.springRequestContext.requestUri, '/customer/menu/')} ? 'active'">Menu</a></li>
+        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="/orders/cart/-1/" th:classappend="${#strings.startsWith(#ctx.springRequestContext.requestUri, '/orders/cart/')} ? 'active'">Cart</a></li>
+        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="/customer/orders/" th:classappend="${#strings.startsWith(#ctx.springRequestContext.requestUri, '/customer/orders/')} ? 'active'">Orders</a></li>
+        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="/public/feedback/" th:classappend="${#strings.startsWith(#ctx.springRequestContext.requestUri, '/public/feedback/')} ? 'active'">Feedback</a></li>
+        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link border rounded-pill py-3 px-0 px-lg-3 rounded" th:href="@{{url}(url=(${btnUrl}))}" style="box-shadow: 0px 0px;" th:text="${btnText}"></a></li>
+      </ul>
     </div>
-  </nav>
-</div>
+  </div>
+</nav>
 
 </body>
 </html>

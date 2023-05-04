@@ -12,26 +12,27 @@ public class OrderDetails
     @GeneratedValue(strategy = GenerationType.AUTO)
     long id;
     long idOrder;
-    long idProductDetails;
-    String quantity;
-    Boolean available;
+    long idCustomer;
+    long idProduct;
+    int qty;
 
-    public OrderDetails() {
+    public OrderDetails()
+    {
+
     }
 
-    public OrderDetails(long id, long idOrder, long idProductDetails, String quantity, Boolean available) {
-        this.id = id;
-        this.idOrder = idOrder;
-        this.idProductDetails = idProductDetails;
-        this.quantity = quantity;
-        this.available = available;
+    public OrderDetails(long idCustomer, long idProduct, int qty) {
+        this.idOrder = -1;
+        this.idCustomer = idCustomer;
+        this.idProduct = idProduct;
+        this.qty = qty;
     }
 
-    public long getid() {
+    public long getId() {
         return id;
     }
 
-    public void setid(long id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -43,28 +44,28 @@ public class OrderDetails
         this.idOrder = idOrder;
     }
 
-    public long getIdProductDetails() {
-        return idProductDetails;
+    public long getIdCustomer() {
+        return idCustomer;
     }
 
-    public void setIdProductDetails(long idProductDetails) {
-        this.idProductDetails = idProductDetails;
+    public void setIdCustomer(long idCustomer) {
+        this.idCustomer = idCustomer;
     }
 
-    public String getQuantity() {
-        return quantity;
+    public long getIdProduct() {
+        return idProduct;
     }
 
-    public void setQuantity(String quantity) {
-        this.quantity = quantity;
+    public void setIdProduct(long idProduct) {
+        this.idProduct = idProduct;
     }
 
-    public Boolean getAvailable() {
-        return available;
+    public int getQty() {
+        return qty;
     }
 
-    public void setAvailable(Boolean available) {
-        this.available = available;
+    public void setQty(int qty) {
+        this.qty = qty;
     }
 
     @Override
@@ -72,9 +73,9 @@ public class OrderDetails
         return "OrderDetails{" +
                 "id=" + id +
                 ", idOrder=" + idOrder +
-                ", idProductDetails=" + idProductDetails +
-                ", quantity='" + quantity + '\'' +
-                ", available=" + available +
+                ", idCustomer=" + idCustomer +
+                ", idProduct=" + idProduct +
+                ", qty='" + qty + '\'' +
                 '}';
     }
 }

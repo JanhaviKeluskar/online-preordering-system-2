@@ -4,6 +4,11 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import org.hibernate.annotations.CreationTimestamp;
+import org.springframework.format.annotation.DateTimeFormat;
+
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 public class Orders
@@ -12,66 +17,47 @@ public class Orders
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     long id;
-    long idCost;
-    long idHotel;
-    String DateTime;
-    String VisitingDateTime;
+    long idCustomer;
+    @CreationTimestamp
+    LocalDate date;
+    LocalDateTime visitingDateTime;
     Double paid;
-    Boolean cancle;
+    int idStatus;
 
     public Orders()
     {
 
     }
 
-    public Orders(long id, long idCost, long idHotel, String dateTime, String visitingDateTime, Double paid, Boolean cancle) {
-        this.id = id;
-        this.idCost = idCost;
-        this.idHotel = idHotel;
-        DateTime = dateTime;
-        VisitingDateTime = visitingDateTime;
+    public Orders(long idCustomer, LocalDateTime visitingDateTime, Double paid) {
+        this.idCustomer = idCustomer;
+        this.visitingDateTime = visitingDateTime;
         this.paid = paid;
-        this.cancle = cancle;
+        this.idStatus = 0;
     }
 
-    public long getid() {
+    public long getId() {
         return id;
     }
 
-    public void setid(long id) {
+    public void setId(long id) {
         this.id = id;
     }
 
-    public long getIdCost() {
-        return idCost;
+    public long getIdCustomer() {
+        return idCustomer;
     }
 
-    public void setIdCost(long idCost) {
-        this.idCost = idCost;
+    public void setIdCustomer(long idCustomer) {
+        this.idCustomer = idCustomer;
     }
 
-    public long getIdHotel() {
-        return idHotel;
+    public LocalDateTime getVisitingDateTime() {
+        return visitingDateTime;
     }
 
-    public void setIdHotel(long idHotel) {
-        this.idHotel = idHotel;
-    }
-
-    public String getDateTime() {
-        return DateTime;
-    }
-
-    public void setDateTime(String dateTime) {
-        DateTime = dateTime;
-    }
-
-    public String getVisitingDateTime() {
-        return VisitingDateTime;
-    }
-
-    public void setVisitingDateTime(String visitingDateTime) {
-        VisitingDateTime = visitingDateTime;
+    public void setVisitingDateTime(LocalDateTime visitingDateTime) {
+        this.visitingDateTime = visitingDateTime;
     }
 
     public Double getPaid() {
@@ -82,24 +68,30 @@ public class Orders
         this.paid = paid;
     }
 
-    public Boolean getCancle() {
-        return cancle;
+    public int getIdStatus() {
+        return idStatus;
     }
 
-    public void setCancle(Boolean cancle) {
-        this.cancle = cancle;
+    public void setIdStatus(int idStatus) {
+        this.idStatus = idStatus;
+    }
+
+    public LocalDate getDate() {
+        return date;
+    }
+
+    public void setDate(LocalDate date) {
+        this.date = date;
     }
 
     @Override
     public String toString() {
         return "Orders{" +
                 "id=" + id +
-                ", idCost=" + idCost +
-                ", idHotel=" + idHotel +
-                ", DateTime='" + DateTime + '\'' +
-                ", VisitingDateTime='" + VisitingDateTime + '\'' +
+                ", idCustomer=" + idCustomer +
+                ", visitingDateTime=" + visitingDateTime +
                 ", paid=" + paid +
-                ", cancle=" + cancle +
+                ", idStatus=" + idStatus +
                 '}';
     }
 }
